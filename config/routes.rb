@@ -25,7 +25,7 @@ Fanfare::Application.routes.draw do
 
   resources :orders, :only => [:new, :create]
   resources :products, :only => [:index, :show]
-
+  resources :users, :except => [:index, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
