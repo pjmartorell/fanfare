@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619050134) do
+ActiveRecord::Schema.define(version: 20140619072545) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20140619050134) do
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bonus_points", default: 0
+    t.boolean  "visible",      default: false
   end
 
   create_table "users", force: true do |t|

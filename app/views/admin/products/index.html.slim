@@ -1,22 +1,22 @@
-h1 Products
+h1 Productes
 br
 = link_to "New product", new_admin_product_path, :class => "btn btn-primary"
 
 table.table.table-striped
   thead
     tr
-      th Product
-      th Price
-      / th Bonus points
-      / th Visibility
+      th Producte
+      th Preu
+      th Bonus
+      th Visible
       th
   tbody
     - @products.each do |product|
       tr
         td = product.name
         td = product.price
-        / td = product.bonus_points
+        td = product.bonus_points
         td.span2
-          / - message = product.visible ? "Hide" : "Show"
-          / = link_to message, toggle_visible_admin_product_path(product), :class => "btn btn-mini", :method => :put
-        td =' link_to "Edit", edit_admin_product_path(product), :class => "btn btn-mini"
+          - message = product.visible ? "Ocultar" : "Mostrar"
+          = link_to message, toggle_visible_admin_product_path(product), :class => "btn btn-mini", :method => :put
+        td =' link_to "Editar", edit_admin_product_path(product), :class => "btn btn-mini"

@@ -1,5 +1,15 @@
-table.table
-  - @products.each do |product|
+h1 Productes
+br
+table.table.table-striped
+  thead
     tr
-      td = product.name
-      td = product.price
+      th Producte
+      th Preu
+      th Bonus
+      th Visible
+      th
+  tbody
+    - @products.each do |product|
+      tr
+        td = product.name
+        td = product.price

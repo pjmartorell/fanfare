@@ -1,4 +1,5 @@
 class Admin::ProductsController < Admin::AdminController
+load_resource
 
   def index
     @products = Product.all
@@ -21,7 +22,7 @@ class Admin::ProductsController < Admin::AdminController
   end
 
   def update
-    if @product.update_attributes(params[:product])
+    if @product.update_attributes(product_params)
       flash[:notice] = "Product updated."
     else
       flash[:error] = "It was not possible to update the product."
@@ -47,6 +48,6 @@ class Admin::ProductsController < Admin::AdminController
   private
 
   def product_params
-    params.require(:product).permit(:name, :price)
+    params.require(:product).permit(:name, :price, :bonus_points, :visible)
   end
 end
