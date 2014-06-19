@@ -13,7 +13,11 @@ Fanfare::Application.routes.draw do
   root 'bands#index'
 
   namespace :admin do
-    resources :users, :only => [:index, :show, :update]
+    resources :users, :only => [:index, :show, :update] do
+      member do
+        put :edit_points
+      end
+    end
     resources :products, :except => :show do
       put :toggle_visible, :on => :member
     end

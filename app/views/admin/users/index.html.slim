@@ -10,18 +10,16 @@ br
   table.table.table-striped
     thead
       tr
-        th Nombre
+        th Nom
         th Email
-        th Puntos
-        th Puntos totales
+        th Punts
         th
     tbody
       - @users.each do |user|
         tr
           td = link_to user.username, user
           td = user.email
-          td = user.user_points.points
-          td = user.user_points.total_points
+          td = user.points
           td = link_to "Mostrar", admin_user_path(user), :class => "btn btn-mini"
 
   = will_paginate @users, :previous_label => "<", :next_label => ">", :renderer => BootstrapPagination::Rails

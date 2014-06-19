@@ -1,15 +1,15 @@
 class Admin::UsersController < Admin::AdminController
+load_resource
 
   def index
     @users = if params[:search]
-      User.where(User.arel_table[:username].matches("%#{params[:search]}%")).paginate(:page => params[:page], :per_page => 100)
-    end
+      User.where(User.arel_table[:username].matches("%#{params[:search]}%"))
+    else
+      @users = User.all
+    end.paginate(:page => params[:page], :per_page => 50)
   end
 
   def show
-    @promotions = @user.pending_promotions
-    @won_prizes = @user.prizes
-    @all_prizes = Prize.all
     # @points_movements = @user.points_movements.reorder("id DESC").paginate(:page => params[:page], :per_page => 20)
     # @valid_movements = validate_points_movements(@points_movements)
   end

@@ -13,10 +13,10 @@ nav.navbar.navbar-default role="navigation"
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav
 
-        li= link_to "Home", root_path
-        li= link_to "Users", admin_users_path
+        li= link_to "Inici", root_path
+        li= link_to "Usuaris", admin_users_path
         li.dropdown
-          = link_to "Shop", "#", "data-toggle" => "dropdown", :class => "dropdown-toggle"
+          = link_to "Botiga", "#", "data-toggle" => "dropdown", :class => "dropdown-toggle"
           ul.dropdown-menu
-            li= link_to "Products", admin_products_path
-            li= link_to "Orders", admin_orders_path
+            li= link_to "Productes", admin_products_path
+            li= link_to "Comandes", admin_orders_path
