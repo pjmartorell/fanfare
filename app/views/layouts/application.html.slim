@@ -1,18 +1,14 @@
 doctype html
-html class="caca"
+html
   head
     title= Fanfare
 
-    = stylesheet_link_tag  "application", :media => "all"
+    = stylesheet_link_tag "backoffice", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
 
     meta name="viewport" content="width=device-width, initial-scale=1.0"
 
-    p.notice
-      = notice
-    p.alert
-      = alert
     - if user_signed_in?
       = "Autenticat com a #{current_user.email}. | "
       = link_to "Tanca sessió", destroy_user_session_path, :method => :delete
@@ -20,4 +16,8 @@ html class="caca"
       = link_to "Crea un compte", new_user_registration_path
       = link_to "Inicia sessió", new_user_session_path
   body.body-container
-    = yield
+    = render "shared/flash"
+    = render "shared/admin_header"
+    .container
+      .row
+        .col-xs-12= yield
