@@ -1,0 +1,100 @@
+h1
+  = "Usuario #{@user.username}"
+  .btn-group.pull-right
+    a.btn.btn-danger.dropdown-toggle data-toggle="dropdown"
+      = "Acciones"
+      span.caret
+    ul.dropdown-menu
+      - message = @user.blocked ? "Desbloquear cuenta" : "Bloquear cuenta"
+      li = link_to message, toggle_blocked_admin_user_path(@user), :method => :put, :data => { :confirm => "Estás seguro?" }
+      - message = @user.blocked_from_chat ? "Desbloquear chat" : "Bloquear chat"
+      li = link_to message, toggle_blocked_from_chat_user_path(@user), :method => :put, :data => { :confirm => "Estás seguro?" }
+      - @user.authentications.each do |authentication|
+        li = link_to "Borrar #{authentication.provider}", admin_authentication_path(authentication), method: :delete, data: { confirm: "Estás seguro?" }
+      li = link_to "Resetear puntos y apuestas", reset_points_and_bets_admin_user_path(@user), :method => :put, :data => { :confirm => "Estás seguro?" }
+      li = link_to "Corregir desajuste puntos", fix_points_admin_user_path(@user), :method => :put, :data => { :confirm => "Estás seguro?" }
+      - message = @user.blocked_from_chat ? "Desbloquear chat" : "Bloquear chat"
+
+.well
+  h2= "Puntos"
+  dl.dl-horizontal
+    dt= "Disponibles:"
+    dd= @user.user_points.points
+    dt= "En juego (apuestas):"
+    dd= @user.bet_points
+    dt= "En juego (quinielas):"
+    dd= @user.tournament_inscription_points
+    dt= "Total de puntos:"
+    dd= @user.user_points.total_points
+
+#edit_points
+  h2 Cambiar puntos
+
+= form_tag edit_points_admin_user_path, :method => :put do |f|
+  = number_field_tag :points
+  = submit_tag "Enviar"
+
+#edit_role
+  h2 Cambiar rol
+
+  = simple_form_for @user, :url => admin_user_path, :method => :put do |f|
+    = f.input :role, :collection => User::ROLES, :include_blank => false
+    = f.submit
+
+#edit_email
+  h2 Cambiar email
+
+  = simple_form_for @user, :url => admin_user_path, :method => :put do |f|
+    = f.input :email
+    = f.submit
+
+#available_promotions
+  h2 Promociones
+  - if @promotions.any?
+    table.table
+      thead
+        tr
+          th Promoter
+          th Points
+          th
+      - @promotions.each do |promotion|
+        tr
+          td= promotion.promoter
+          td= promotion.points
+          td= link_to "Give the points", set_winner_admin_promotion_user_path(promotion, @user), :method => :put, :class => "btn btn-mini", :data => { :confirm => "Estás seguro?" }
+
+  - else
+    | The user has all the promotions.
+
+#won_prizes
+  h2 Premios
+  - if @won_prizes.any?
+    table.table
+      thead
+        tr
+          th
+      - @won_prizes.each do |prize|
+        tr
+          td= prize.name
+  - else
+    | The user has no prizes.
+
+#all_prizes
+  h3 Otorgar premios
+  - if @all_prizes.any?
+    table.table
+      thead
+        tr
+          th Name
+          th Points
+          th
+      - @all_prizes.each do |prize|
+        tr
+          td= prize.name
+          td= prize.points
+          td
+            - if prize.points < @user.user_points.points && prize.points < @user.user_points.total_points
+              = link_to "Give prize", give_admin_prize_user_path(prize.id, @user), :method => :put, :class => "btn btn-mini", :data => { :confirm => "Estás seguro?" }
+
+  - else
+    | There are no prizes to give.

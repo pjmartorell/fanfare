@@ -1,0 +1,55 @@
+# Ignore bundler config
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Ignore .rvmrc
+.rvmrc
+
+# Ignore app.yml
+/config/app.yml
+
+# Ignore database.yml
+/config/database.yml
+
+# Ignore .rvmrc
+.rvmrc
+
+# Ignore .ruby-version
+.ruby-version
+
+# Ignore .ruby-gemset
+.ruby-gemset
+
+# Ignore S3 configuration
+/config/s3.yml
+
+# Ignore sass cache
+.sass-cache
+
+# Ignore .DS_Store
+.DS_Store
+
+# Ignore uploads
+/public/uploads
+
+# Ignore system folder
+/public/system
+
+# Ignore sidekiq configuration
+/config/sidekiq.yml
+
+# Ignore zeus files
+zeus.json
+custom_plan.rb
+
+# Ignore Redis datasets
+dump.rdb
+
+# Vim temp files
+tags

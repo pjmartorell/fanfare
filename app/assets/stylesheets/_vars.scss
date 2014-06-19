@@ -1,0 +1,62 @@
+//---––––––––––––
+// BASELINE VARS
+//---––––––––––––
+$base-font-size:    14px;
+$base-line:         6px;
+$base-line-height:  $base-line*4;
+$height-header:     $base-line*10;
+$border-width:      $base-line/3;
+$radius-width:      $base-line;
+
+//---––––––––––––
+// COLORS VAR
+//---––––––––––––
+
+// App colors
+$bodybg :             #449a88;
+$navbg :              #2a2a2a;
+$pagebg :             #e7e6dd;
+$white:               #FFF;
+$grey:                #F3F4F5;
+
+// Sports colors
+$others:              #5ecef4;
+$football:            #59dbbf;
+$e-sports:            #9884C9;
+$tennis:              #FAC34C;
+$basketball:          #FF8759;
+$landing-one:         #0E314D;
+
+// Level colors
+$lvl-rookie:          #21a4d8;
+$lvl-regular:         #2FC2A2;
+$lvl-medium:          #DB6436;
+$lvl-high:            #7D5EC7;
+$lvl-god:             #DFB14F;
+
+// Social colors
+$facebook:            #3b5998;
+$twitter:             #019ad2;
+
+// Base colors
+$black-color:         #272727;
+$link-color:          #21a4d8;
+$link-color-dark:     #1b87b3;
+$link-color-orange:   #ff7010;
+$red-alert:           #F56E84;
+$beige:               #fffeed;
+$dark-beige:          #d3d2b9;
+$hot-red:             #e8533f;
+$good-green:          #5ECC8F;
+$text-color:          mix($black-color, $link-color, 90%);
+
+//Box Shadow
+$box-shadow:          0 $border-width*1.5 $border-width*2.5 transparentize(#000, 0.85);
+$box-shadow-darker:   0 $border-width*1.5 $radius-width/2 transparentize(#000, 0.75);
+
+$sans-serif-one:      "Raleway", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+//---––––––––––––
+// LISTS
+//---––––––––––––
+$sports:              football $football, tennis $tennis, basketball $basketball, others $others, e_sports $e-sports;
