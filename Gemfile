@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 1.2'
 # gem 'debugger', group: [:development, :test]
 
 # Frontend
-gem 'simple_form'
+gem 'simple_form', github: "plataformatec/simple_form"
 gem 'facebox-rails'
 
 # User management
