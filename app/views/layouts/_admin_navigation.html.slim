@@ -1,0 +1,16 @@
+/ navigation styled for Bootstrap 3.0
+nav.navbar.navbar-inverse.navbar-fixed-top
+  .container
+    .navbar-header
+      button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-collapse"]
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to 'Inici', root_path, class: 'navbar-brand'
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        == render 'layouts/admin_navigation_links'
+
+      .visible-lg-inline-block.pull-right.text-info
+        == render "shared/user_signed_in"

@@ -1,18 +1,22 @@
 doctype html
 html
   head
-    title= Fanfare
+    meta[name="viewport" content="width=device-width, initial-scale=1.0"]
+    title
+      = content_for?(:title) ? yield(:title) : 'Fanfare'
+    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Fanfare'}"
+    == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => true
+    == csrf_meta_tags
+  body
+    header
+      == render 'layouts/navigation'
+    main[role="main"]
+      == render 'layouts/messages'
+      == yield
 
-    = stylesheet_link_tag "backoffice", :media => "all"
-    = javascript_include_tag "application"
-    = csrf_meta_tags
-
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
-
-  body.body-container
-    = render "shared/flash"
-    = render "shared/admin_header"
-    = render "shared/user_signed_in"
-    .container
-      .row
-        .col-xs-12= yield
+    /!
+      Javascripts
+      \==================================================
+    /! Placed at the end of the document so the pages load faster
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = yield :custom_js
