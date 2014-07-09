@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::AdminController
-load_resource
+  before_action :set_product, only: [:update, :destroy, :toggle_visible]
 
   def index
     @products = Product.all
@@ -10,7 +10,7 @@ load_resource
   end
 
   def create
-    Product.create(product_params)
+    @product = Product.new(product_params)
 
     if @product.save
       flash[:notice] = "Product created."
@@ -46,6 +46,11 @@ load_resource
   end
 
   private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
   def product_params
     params.require(:product).permit(:name, :price, :bonus_points, :visible)
