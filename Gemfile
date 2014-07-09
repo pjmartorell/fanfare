@@ -153,6 +153,7 @@ end
 # Development & Test
 group :development, :test do
   gem "rspec-rails", "~> 2.14.0"
+  gem 'rails_layout'
 end
 
 # Assets
@@ -161,7 +162,6 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'compass-rails'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
-gem 'rails_layout'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
