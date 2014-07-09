@@ -1,0 +1,6 @@
+- if user_signed_in?
+  = "Autenticat com a #{current_user.email}. | "
+  = link_to "Tanca sessió", destroy_user_session_path, :method => :delete
+- else
+  = link_to "Crea un compte", new_user_registration_path
+  = link_to "Inicia sessió", new_user_session_path
