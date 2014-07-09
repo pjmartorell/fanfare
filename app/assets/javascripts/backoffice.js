@@ -5,7 +5,6 @@
 //= require jquery.facebox
 
 // Loads all Bootstrap javascripts
-//= require bootstrap
 //= require bootstrap-sprockets
 
 jQuery(document).ready(function($) {
