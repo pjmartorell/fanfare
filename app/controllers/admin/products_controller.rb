@@ -10,7 +10,7 @@ load_resource
   end
 
   def create
-    @product = Product.new(product_params)
+    Product.create(product_params)
 
     if @product.save
       flash[:notice] = "Product created."
