@@ -1,9 +1,9 @@
-<h1>Listing bands</h1>
+<h1>Llistat bandes</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Nom</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,9 +14,9 @@
     <% @bands.each do |band| %>
       <tr>
         <td><%= band.name %></td>
-        <td><%= link_to 'Show', band %></td>
-        <td><%= link_to 'Edit', edit_band_path(band) %></td>
-        <td><%= link_to 'Destroy', band, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', band %></td>
+        <td><%= link_to 'Editar', edit_band_path(band) %></td>
+        <td><%= link_to 'Eliminar', band, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Band', new_band_path %>
+<%= link_to 'Nova Banda', new_band_path %>

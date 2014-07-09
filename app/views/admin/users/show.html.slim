@@ -1,5 +1,5 @@
 h1
-  = "Usuari #{@user.username}"
+  = "Modificar perfil"
   .btn-group.pull-right
     a.btn.btn-danger.dropdown-toggle data-toggle="dropdown"
       = "Accions"
@@ -7,28 +7,15 @@ h1
     ul.dropdown-menu
 
 .well
-  h2= "Punts"
   dl.dl-horizontal
-    dt= "Disponibles:"
+    dt= "Punts acumulats:"
     dd= @user.points
 
-#edit_points
-  h2 Modificar punts
+#edit_profile
 
-= form_tag edit_points_admin_user_path, :method => :put do |f|
-  = number_field_tag :points
-  = submit_tag "Enviar"
-
-#edit_role
-  h2 Modificar rol
-
-  = simple_form_for @user, :url => admin_user_path, :method => :put do |f|
+  = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
+    = f.input :username
     = f.input :role, :collection => User::ROLES, :include_blank => false
-    = f.submit "Enviar"
-
-#edit_email
-  h2 Modificar email
-
-  = simple_form_for @user, :url => admin_user_path, :method => :put do |f|
     = f.input :email
+    = f.input :points
     = f.submit "Enviar"
