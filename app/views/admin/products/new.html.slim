@@ -1,8 +1,8 @@
 = simple_form_for [:admin, @product] do |f|
   = f.input :name
-  / = f.input :price
-  / = f.input :bonus_points
-  / = f.input :visible, boolean_style: :nested
+  = f.input :price
+  = f.input :bonus_points
+  = f.input :visible, boolean_style: :nested
   / = f.input :product_index_image
   / = f.input :product_show_image
   / = f.input :description
