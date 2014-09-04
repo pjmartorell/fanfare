@@ -10,7 +10,7 @@ class Admin::AdminController < ApplicationController
       flash[:error] = "Necessites estar autenticat."
       redirect_to new_user_session_path
     elsif !current_user.is_admin?
-      flash[:error] = "Necessites ser administrador."
+      flash[:error] = "Necessites permisos d'administrador."
       redirect_to root_path
     end
   end
