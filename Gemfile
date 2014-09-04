@@ -49,13 +49,13 @@ gem 'unf'
 gem 'nokogiri'
 
 # ActiveMerchant
-gem 'activemerchant'
+gem 'activemerchant', '~> 1.44.1'
 
 # String decoder
 gem 'htmlentities'
 
 # Resource management
-gem 'best_in_place', github: 'bernat/best_in_place', branch: 'rails-4'
+gem 'best_in_place', github: 'bernat/best_in_place'
 
 # Task managing
 gem 'sidekiq'
