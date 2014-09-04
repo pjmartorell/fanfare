@@ -1,15 +1,15 @@
 h1 Productes
 br
-table.table.table-striped
-  thead
-    tr
-      th Producte
-      th Preu
-      th Bonus
-      th Visible
-      th
-  tbody
-    - @products.each do |product|
-      tr
-        td = product.name
-        td = product.price
+
+.row
+  - @products.each do |product|
+    .col-sm-6.col-md-4
+      .thumbnail
+        = link_to product do
+          = image_tag product.product_index_image_url, class: "sm-trailer"
+        h3= product.name
+        p= "#{number_with_delimiter(product.price)} €"
+        p
+          =' "Guanya"
+          b.active-coins=' number_with_delimiter(product.bonus_points)
+          = "punts"

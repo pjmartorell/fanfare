@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::AdminController
-  before_action :set_product, only: [:update, :destroy, :toggle_visible]
+  before_action :set_product, only: [:update, :edit, :destroy, :toggle_visible]
 
   def index
     @products = Product.all
@@ -53,6 +53,7 @@ class Admin::ProductsController < Admin::AdminController
   end
 
   def product_params
-    params.require(:product).permit(:name, :price, :bonus_points, :visible)
+    params.require(:product).permit(:name, :price, :bonus_points, :product_index_image,
+    :product_show_image, :description, :visible)
   end
 end
