@@ -27,7 +27,14 @@ Fanfare::Application.routes.draw do
     root :to => "users#index"
   end
 
-  resources :orders, :only => [:new, :create]
+  resources :orders, :only => [:new, :create] do
+    member do
+      get :finalize
+      get :thanks
+      post :thanks
+    end
+  end
+
   resources :products, :only => [:index, :show]
   resources :users, :except => [:index, :destroy]
 

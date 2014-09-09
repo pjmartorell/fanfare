@@ -1,0 +1,58 @@
+.title-wrapper
+  h1 = t(".cart")
+
+.profile-wrapper
+  - if @products.any?
+    = simple_form_for @order do |f|
+      table.table#order-form.row.no-row.trailer
+        thead
+          th
+          th
+          th = t("price")
+          th = t("bonus")
+          th
+        = f.fields_for :order_products do |order_product|
+          - product = order_product.object.product
+          tr
+            td
+              .center = link_to image_tag(product.product_index_image_url(:small)), product
+            td = product.name
+            td
+              =' product.price
+              | €
+            td = number_with_delimiter(product.bonus_points)
+            td = order_product.input :quantity, :label => false, :collection => (0..10), :include_blank => false, :input_html => {class: "quantity", price: product.price, bonus: product.bonus_points}
+            = order_product.hidden_field :product_id, :value => order_product.object.product.id
+
+      = render "price_and_bonus", :order => @order
+      .row.no-row.row-collapse
+        .columns.large-8.medium-12
+          = f.input :shipping_name, :label => t(".shipping_name")
+          = f.input :shipping_last_name, :label => t(".shipping_last_name")
+          = f.input :shipping_address, :label => t(".shipping_address")
+          = f.input :shipping_town, :label => t(".shipping_town")
+          = f.input :shipping_zip, :label => t(".shipping_zip")
+          = f.input :shipping_province, :label => t(".shipping_province")
+          = f.input :shipping_country, :label => t(".shipping_country"), :collection => Order::SHIPPING_COUNTRIES, :include_blank => false
+          = f.input :shipping_phone, :label => t(".shipping_phone")
+
+          = button_tag "Comprar", class: "btn"
+
+- content_for :custom_js do
+
+  javascript:
+    $("select").on("change", function() {
+      total_bonus = 0
+      total_price = 0
+      $("#order-form select").each(function(i, quantity_element){
+        price = quantity_element.getAttribute("price")
+        bonus = quantity_element.getAttribute("bonus")
+        quantity = quantity_element.value
+        total_bonus += bonus * quantity
+        total_price += price * quantity
+        total_price = Number((total_price).toFixed(2));
+      })
+      $("#price-value").text(total_price)
+      $("#bonus_points-value").text(addFormatToNumber(total_bonus))
+    });
+
