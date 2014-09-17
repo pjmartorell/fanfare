@@ -27,7 +27,7 @@ gem 'facebox-rails'
 
 # User management
 gem 'devise'
-gem 'cancan'
+gem 'cancancan', '~> 1.9'
 
 # Omniauth
 gem 'omniauth-facebook'
