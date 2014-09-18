@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 
   def create
     if params[:order]
-      params_order = purge_null_products(params[:order])
+      purge_null_products(params[:order])
       @order = Order.new order_params
       @order.user = current_user
 
@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
     params.require(:order).permit(:user_id, :price,
-    {:order_products => [:order_id, :product_id]},
+    {order_products_attributes: [:id, :product_id, :quantity]},
     :shipping_name, :shipping_last_name, :shipping_address,
     :shipping_town, :shipping_zip, :shipping_province,
     :shipping_country, :shipping_phone, :bonus_points,

@@ -1,10 +1,10 @@
 #order-info.trailer
   h5#order_price
-    =' t(".price_colon")
+    =' "Preu:"
     b#price-value =' number_with_delimiter(@order.price)
     b €
 
   h5#order-bonus_points
-    =' t(".bonus_colon")
+    =' "Bonus:"
     b#bonus_points-value =' number_with_delimiter(@order.bonus_points)
-    b= t("points")
+    b= "punts"

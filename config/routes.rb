@@ -35,6 +35,12 @@ Fanfare::Application.routes.draw do
     end
   end
 
+  resources :payments, :only => :none do
+    collection do
+      post :paypal_ipn
+    end
+  end
+
   resources :products, :only => [:index, :show]
   resources :users, :except => [:index, :destroy]
 
