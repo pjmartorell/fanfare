@@ -50,6 +50,7 @@ gem 'nokogiri'
 
 # ActiveMerchant
 gem 'activemerchant', '~> 1.44.1'
+gem 'offsite_payments'
 
 # String decoder
 gem 'htmlentities'

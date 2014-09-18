@@ -528,6 +528,7 @@ DEPENDENCIES
   mysql2
   newrelic_rpm
   nokogiri
+  offsite_payments
   omniauth-facebook
   omniauth-twitter
   poltergeist
