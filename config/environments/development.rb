@@ -26,4 +26,14 @@ Fanfare::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.after_initialize do
+  ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      login: "API_USERNAME_HERE",
+      password: "API_PASSWORD_HERE",
+      signature: "API_SIGNATURE_HERE"
+    }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

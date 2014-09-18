@@ -11,6 +11,14 @@ class Order < ActiveRecord::Base
   before_validation :set_price, :on => :create
   before_validation :set_bonus_points, :on => :create
 
+  ["bonus_points", "price"].each do |attr|
+    define_method "calculate_#{attr}" do
+      order_products.map do |order_product|
+        order_product.quantity * order_product.product.send(attr)
+      end.sum
+    end
+  end
+
   private
 
   def set_price
