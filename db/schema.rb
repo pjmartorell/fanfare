@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917123312) do
+ActiveRecord::Schema.define(version: 20141005214623) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20140917123312) do
     t.string   "shipping_phone"
     t.boolean  "paid",               default: false
     t.string   "ref"
+    t.string   "type"
+    t.string   "state"
   end
 
   create_table "products", force: true do |t|
