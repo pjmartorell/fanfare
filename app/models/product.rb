@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   has_many :order_products
-  has_many :orders, :through => :order_products
+  has_many :product_orders, :through => :order_products
 
   scope :visible, where(:visible => true)
 

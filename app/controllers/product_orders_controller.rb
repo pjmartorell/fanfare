@@ -1,23 +1,23 @@
-class OrdersController < ApplicationController
+class ProductOrdersController < ApplicationController
   load_resource
 
   def new
-    @order = Order.new(:user_id => current_user.id)
+    @product_order = ProductOrder.new(:user_id => current_user.id)
 
     @products = Product.visible.all
     @products.each do |product|
-      @order.order_products.build(:product_id => product.id, :quantity => 0)
+      @product_order.order_products.build(:product_id => product.id, :quantity => 0)
     end
   end
 
   def create
-    if params[:order]
-      purge_null_products(params[:order])
-      @order = Order.new order_params
-      @order.user = current_user
+    if params[:product_order]
+      purge_null_products(params[:product_order])
+      @product_order = ProductOrder.new(product_order_params)
+      @product_order.user = current_user
 
-      if @order.save
-        redirect_to finalize_order_path(@order)
+      if @product_order.save
+        redirect_to finalize_product_order_path(@product_order)
       else
         redirect_to :back
       end
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   end
 
   def finalize
-    redirect_to root_path if @order.paid
+    redirect_to root_path if @product_order.paid
   end
 
   private
@@ -39,8 +39,8 @@ class OrdersController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def order_params
-    params.require(:order).permit(:user_id, :price,
+  def product_order_params
+    params.require(:product_order).permit(:user_id, :price,
     {order_products_attributes: [:id, :product_id, :quantity]},
     :shipping_name, :shipping_last_name, :shipping_address,
     :shipping_town, :shipping_zip, :shipping_province,

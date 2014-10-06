@@ -21,13 +21,13 @@ Fanfare::Application.routes.draw do
     resources :products, :except => :show do
       put :toggle_visible, :on => :member
     end
-    resources :orders, :only => [:index, :show] do
+    resources :product_orders, :only => [:index, :show] do
       put :toggle_sent, :on => :member
     end
     root :to => "users#index"
   end
 
-  resources :orders, :only => [:new, :create] do
+  resources :product_orders, :only => [:new, :create] do
     member do
       get :finalize
       get :thanks

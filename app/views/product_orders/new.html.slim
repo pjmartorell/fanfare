@@ -3,7 +3,7 @@
 
 .profile-wrapper
   - if @products.any?
-    = simple_form_for @order do |f|
+    = simple_form_for @product_order do |f|
       table.table#order-form.row.no-row.trailer
         thead
           th
@@ -24,7 +24,7 @@
             td = order_product.input :quantity, :label => false, :collection => (0..10), :include_blank => false, :input_html => {class: "quantity", price: product.price, bonus: product.bonus_points}
             = order_product.hidden_field :product_id, :value => order_product.object.product.id
 
-      = render "price_and_bonus", :order => @order
+      = render "price_and_bonus", :order => @product_order
       .row.no-row.row-collapse
         .columns.large-8.medium-12
           = f.input :shipping_name, :label => t(".shipping_name")
@@ -33,7 +33,7 @@
           = f.input :shipping_town, :label => t(".shipping_town")
           = f.input :shipping_zip, :label => t(".shipping_zip")
           = f.input :shipping_province, :label => t(".shipping_province")
-          = f.input :shipping_country, :label => t(".shipping_country"), :collection => Order::SHIPPING_COUNTRIES, :include_blank => false
+          = f.input :shipping_country, :label => t(".shipping_country"), :collection => ProductOrder::SHIPPING_COUNTRIES, :include_blank => false
           = f.input :shipping_phone, :label => t(".shipping_phone")
 
           = button_tag "Comprar", class: "btn"

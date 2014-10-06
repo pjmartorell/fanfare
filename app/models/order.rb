@@ -1,40 +1,45 @@
 class Order < ActiveRecord::Base
-  SHIPPING_COUNTRIES = ['Spain']
-
-  has_many :order_products
-  has_many :products, :through => :order_products
-  belongs_to :user
-
-  accepts_nested_attributes_for :order_products
+  include AASM
 
   before_validation :set_ref, :on => :create
-  before_validation :set_price, :on => :create
-  before_validation :set_bonus_points, :on => :create
 
-  ["bonus_points", "price"].each do |attr|
-    define_method "calculate_#{attr}" do
-      order_products.map do |order_product|
-        order_product.quantity * order_product.product.send(attr)
-      end.sum
+  aasm :column => :state do
+    state :pending, :initial => true
+    state :undecided
+    state :given, :enter => :give_prize
+    state :sent, :enter => :notify_shipment
+    state :rejected, :enter => :notify_rejection
+
+    event :set_undecided do
+      transitions :to => :undecided, :from => :pending
+    end
+
+    event :set_given do
+      transitions :to => :given, :from => [:pending, :undecided]
+    end
+
+    event :set_sent do
+      transitions :to => :sent, :from => :given
+    end
+
+    event :set_rejected do
+      transitions :to => :rejected, :from => [:undecided, :pending, :given, :sent]
     end
   end
 
   private
 
-  def set_price
-    self.price = calculate_price.round(2)
+  def give_prize
   end
 
-  def set_bonus_points
-    self.bonus_points = calculate_bonus_points
+  def notify_shipment
+  end
+
+  def notify_rejection
   end
 
   def set_ref
     return unless user.present?
     self.ref = calculate_ref
-  end
-
-  def calculate_ref
-    [Time.now.strftime("%Y%m"), user.id, user.orders.count].join
   end
 end

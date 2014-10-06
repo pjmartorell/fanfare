@@ -1,0 +1,17 @@
+h1 Comandes
+br
+
+table.table.table-striped
+  thead
+    tr
+      th Data
+      th Usuari
+      th Preu
+      th
+  tbody
+    - @product_orders.each do |product_order|
+      tr
+        td = product_order.created_at
+        td = product_order.user.username
+        td = product_order.price
+        td =' link_to "Mostrar", admin_product_order_path(product_order), :class => "btn btn-mini"

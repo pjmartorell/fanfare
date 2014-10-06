@@ -1,0 +1,22 @@
+h1 = "Order #{@product_order.ref}"
+
+ul
+  li = "Preu: #{@product_order.price}"
+  li = "Bonus: #{@product_order.bonus_points}"
+  li = "Shipping name: #{@product_order.shipping_name}"
+  li = "Shipping last name: #{@product_order.shipping_last_name}"
+  li = "Shipping address: #{@product_order.shipping_address}"
+  li = "Shipping town: #{@product_order.shipping_town}"
+  li = "Shipping zip: #{@product_order.shipping_zip}"
+  li = "Shipping province: #{@product_order.shipping_province}"
+  li = "Shipping country: #{@product_order.shipping_country}"
+  li = "Shipping phone: #{@product_order.shipping_phone}"
+
+h2 Productos
+table.table
+  - @product_order.order_products.each do |order_product|
+    tr
+      td = order_product.product.name
+      td = order_product.quantity
+
+
