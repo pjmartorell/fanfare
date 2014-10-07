@@ -3,6 +3,14 @@ class ProductOrdersController < ApplicationController
 
   def new
     @product_order = ProductOrder.new(:user_id => current_user.id)
+    @product_order.shipping_name = current_user.shipping_name
+    @product_order.shipping_last_name = current_user.shipping_last_name
+    @product_order.shipping_address = current_user.shipping_address
+    @product_order.shipping_town = current_user.shipping_town
+    @product_order.shipping_zip = current_user.shipping_zip
+    @product_order.shipping_province = current_user.shipping_province
+    @product_order.shipping_country = current_user.shipping_country
+    @product_order.shipping_phone = current_user.shipping_phone
 
     @products = Product.visible.all
     @products.each do |product|

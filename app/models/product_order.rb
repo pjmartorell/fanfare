@@ -3,7 +3,6 @@ class ProductOrder < Order
 
   has_many :order_products
   has_many :products, :through => :order_products
-  belongs_to :user
 
   accepts_nested_attributes_for :order_products
 
@@ -30,5 +29,17 @@ class ProductOrder < Order
 
   def calculate_ref
     [Time.now.strftime("%Y%m"), user.id, user.product_orders.count].join
+  end
+
+  def update_user_data
+    user.shipping_name = shipping_name
+    user.shipping_last_name = shipping_last_name
+    user.shipping_address = shipping_address
+    user.shipping_town = shipping_town
+    user.shipping_zip = shipping_zip
+    user.shipping_province = shipping_province
+    user.shipping_country = shipping_country
+    user.shipping_phone = shipping_phone
+    user.save
   end
 end

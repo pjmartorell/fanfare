@@ -1,7 +1,10 @@
 class Order < ActiveRecord::Base
   include AASM
 
+  belongs_to :user
+
   before_validation :set_ref, :on => :create
+  after_create :update_user_data
 
   aasm :column => :state do
     state :pending, :initial => true

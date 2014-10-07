@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006173301) do
+ActiveRecord::Schema.define(version: 20141006202649) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 20141006173301) do
     t.string   "username"
     t.string   "role",                   default: "user"
     t.integer  "points",                 default: 0
+    t.string   "shipping_name"
+    t.string   "shipping_last_name"
+    t.string   "shipping_email"
+    t.string   "shipping_address"
+    t.string   "shipping_town"
+    t.string   "shipping_zip"
+    t.string   "shipping_province"
+    t.string   "shipping_country"
+    t.string   "shipping_phone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
