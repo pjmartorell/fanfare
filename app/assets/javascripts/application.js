@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require application-end
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-sprockets

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006202649) do
+ActiveRecord::Schema.define(version: 20141007223912) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -26,8 +26,13 @@ ActiveRecord::Schema.define(version: 20141006202649) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "quantity"
-    t.integer  "product_order_id"
+    t.integer  "order_id"
+    t.decimal  "price",        precision: 8, scale: 2
+    t.integer  "bonus_points"
   end
+
+  add_index "order_products", ["order_id"], name: "index_order_product_on_order_id"
+  add_index "order_products", ["product_id"], name: "index_order_product_on_product_id"
 
   create_table "orders", force: true do |t|
     t.integer  "user_id"
