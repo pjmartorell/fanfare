@@ -7,12 +7,5 @@ class ProductShowImageUploader < CarrierWave::Uploader::Base
     "system/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process :resize => ["630x200"]
-
-  def resize(size)
-    manipulate! do |img|
-      img.resize "#{size}!"
-      img
-    end
-  end
+  process :resize_to_fit => [630, 200]
 end

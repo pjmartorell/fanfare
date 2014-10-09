@@ -7,16 +7,9 @@ class ProductImageUploader < CarrierWave::Uploader::Base
     "system/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  process :resize => ["300x160"]
+  process :resize_to_fit => [300, 160]
   version :small do
-    process :resize => ["180x96"]
-  end
-
-  def resize(size)
-    manipulate! do |img|
-      img.resize "#{size}!"
-      img
-    end
+    process :resize_to_fit => [180, 96]
   end
 
   def extension_white_list
