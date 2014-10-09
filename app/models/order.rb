@@ -1,9 +1,12 @@
 class Order < ActiveRecord::Base
   include AASM
 
+  STATES = %w{ pending no-stock paid sent rejected}
+
   belongs_to :user
 
   before_validation :set_ref, :on => :create
+  validates_inclusion_of :state, :in => STATES
   after_create :update_user_data
 
   aasm :column => :state do

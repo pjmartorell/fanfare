@@ -20,4 +20,29 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  admin:
+    product_orders:
+      index:
+        pending: pendent
+        no-stock: no stock
+        sent: enviat
+        paid: pagat
+        rejected: rebutjat
+  navigation:
+    shop: Botiga
+  product_orders:
+    new:
+      buy: Comprar
+      shipping_name: Nom
+      shipping_last_name: Cognoms
+      shipping_address: Direcció (carrer, número, porta)
+      shipping_town: Ciutat
+      shipping_zip: Codi Postal
+      shipping_province: Província
+      shipping_country: País
+      shipping_country_choice: Selecciona un país
+      shipping_phone: Telèfon
+    create:
+      success: "Hem registrat la teva petició i en breu rebràs una notificació amb els detalls de l'enviament"
+      non_existent_prize: El premi per al qual vols bescanviar els teus punts no existeix
+      non_existent_prize: El premio por el que deseas canjear tus coins no existe

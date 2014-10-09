@@ -1,5 +1,5 @@
 class ProductOrder < Order
-  SHIPPING_COUNTRIES = ['Spain']
+  SHIPPING_COUNTRIES = ['ES', 'PT', 'IT', 'DE']
 
   has_many :order_products, -> { order('created_at ASC') }, dependent: :destroy, :foreign_key => "order_id"
   has_many :products, :through => :order_products
@@ -8,6 +8,7 @@ class ProductOrder < Order
 
   before_validation :set_price, :on => :create
   before_validation :set_bonus_points, :on => :create
+  validates_inclusion_of :shipping_country, :in => SHIPPING_COUNTRIES
 
   ["bonus_points", "price"].each do |attr|
     define_method "calculate_#{attr}" do
@@ -16,6 +17,11 @@ class ProductOrder < Order
       end.sum
     end
   end
+
+  scope :newest_first, -> { order('id DESC') }
+  scope :product_order, -> (product_order_id) { where product_order_id: product_order_id }
+  scope :shipping_country, -> (shipping_country) { where shipping_country: shipping_country }
+  scope :state, -> (state) { where state: state }
 
   private
 

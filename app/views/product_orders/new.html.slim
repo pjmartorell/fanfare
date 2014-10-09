@@ -33,7 +33,8 @@
           = f.input :shipping_town, :label => t(".shipping_town")
           = f.input :shipping_zip, :label => t(".shipping_zip")
           = f.input :shipping_province, :label => t(".shipping_province")
-          = f.input :shipping_country, :label => t(".shipping_country"), :collection => ProductOrder::SHIPPING_COUNTRIES, :include_blank => false
+          = f.input :shipping_country, :label => t(".shipping_country") do
+            = f.select :shipping_country, region_options_for_select(@shipping_countries, @product_order.shipping_country), {prompt: t(".shipping_country_choice")}, :required => true
           = f.input :shipping_phone, :label => t(".shipping_phone")
 
           = button_tag "Comprar", class: "btn"

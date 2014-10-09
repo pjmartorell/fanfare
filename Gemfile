@@ -21,6 +21,9 @@ gem 'jbuilder', '~> 1.2'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Country select forms
+gem 'carmen-rails', '~> 1.0.0'
+
 # Frontend
 gem 'simple_form', github: "plataformatec/simple_form"
 gem 'facebox-rails'

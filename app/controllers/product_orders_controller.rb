@@ -1,5 +1,6 @@
 class ProductOrdersController < ApplicationController
   load_resource
+  before_filter :initialize_countries
 
   def new
     @product_order = ProductOrder.new(:user_id => current_user.id)
@@ -54,5 +55,9 @@ class ProductOrdersController < ApplicationController
     :shipping_town, :shipping_zip, :shipping_province,
     :shipping_country, :shipping_phone, :bonus_points,
     :paid, :ref)
+  end
+
+  def initialize_countries
+    @shipping_countries = Carmen::Country.all.select{|c| ProductOrder::SHIPPING_COUNTRIES.include?(c.code)}
   end
 end

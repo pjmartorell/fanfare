@@ -1,17 +1,34 @@
 h1 Comandes
 br
 
+= form_tag admin_product_orders_path, method: :get do
+  =' label_tag "País"
+  =' select_tag :shipping_country, region_options_for_select(@shipping_countries, @shipping_country, priority: ['ES', 'DE', 'PT', 'IT', 'US']), {prompt: "Tots"}
+  = hidden_field_tag 'state', @state
+  = submit_tag "Filtrar", :class => "btn-input"
+
+.nav.nav-tabs
+  - @states.each do |state|
+    li class="#{"active" if (state == @state)}"
+      = link_to t(".#{state}").capitalize, admin_product_orders_path(:state => state)
+
 table.table.table-striped
   thead
     tr
       th Data
       th Usuari
       th Preu
+      th País
+      th Estat
       th
   tbody
     - @product_orders.each do |product_order|
       tr
         td = product_order.created_at
-        td = product_order.user.username
+        td = product_order.user.email
         td = product_order.price
+        td = Carmen::Country.coded(product_order.shipping_country).try(:name)
+        td = t(".#{product_order.state}")
         td =' link_to "Mostrar", admin_product_order_path(product_order), :class => "btn btn-mini"
+
+= will_paginate @product_orders, :previous_label => "<", :next_label => ">", :renderer => BootstrapPagination::Rails

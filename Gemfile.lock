@@ -105,6 +105,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carmen (1.0.1)
+      unicode_utils (~> 1.4.0)
+    carmen-rails (1.0.1)
+      carmen (~> 1.0.0)
+      rails
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -469,6 +474,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.6)
+    unicode_utils (1.4.0)
     warden (1.2.3)
       rack (>= 1.0)
     webmock (1.18.0)
@@ -502,6 +508,7 @@ DEPENDENCIES
   capistrano
   capistrano-ext
   capistrano_colors
+  carmen-rails (~> 1.0.0)
   carrierwave
   clockwork
   coffee-rails (~> 4.0.0)

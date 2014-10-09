@@ -1,4 +1,4 @@
-h1 = "Order #{@product_order.ref}"
+h1 = "Comanda ##{@product_order.ref}"
 
 ul
   li = "Preu: #{@product_order.price}"
@@ -12,7 +12,7 @@ ul
   li = "Shipping country: #{@product_order.shipping_country}"
   li = "Shipping phone: #{@product_order.shipping_phone}"
 
-h2 Productos
+h2 Productes
 table.table
   - @product_order.order_products.each do |order_product|
     tr
