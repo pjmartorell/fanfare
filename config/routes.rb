@@ -10,8 +10,6 @@ Fanfare::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
-  root 'bands#index'
-
   namespace :admin do
     resources :users, :only => [:index, :show, :update] do
       member do
@@ -43,6 +41,9 @@ Fanfare::Application.routes.draw do
 
   resources :products, :only => [:index, :show]
   resources :users, :except => [:index, :destroy]
+
+  root 'home#index'
+  get '*a', :to => 'home#error_404'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
