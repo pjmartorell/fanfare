@@ -22,19 +22,22 @@ table.table
 
 .pay-button
   = payment_service_for @product_order.ref, APP_CONFIG["paypal"]["account"], :amount => @product_order.price, :currency => "EUR", :service => :paypal do |service|
-    - service.customer :first_name => @product_order.shipping_name, :email => @product_order.user.email, :last_name => @product_order.shipping_last_name
+    - service.customer :first_name => @product_order.shipping_name,
+        :last_name => @product_order.shipping_last_name,
+        :email => @product_order.user.email,
+        :phone => @product_order.shipping_phone
+    - service.shipping_address :city => @product_order.shipping_town,
+        :address1 => @product_order.shipping_address,
+        :state => @product_order.shipping_province.camelize,
+        :country => @product_order.shipping_country,
+        :zip => @product_order.shipping_zip
+
     - service.shipping 0
     - service.tax '0'
+    - service.item_name "Fanfare"
+
     - service.notify_url paypal_ipn_payments_url
     - service.return_url thanks_product_order_url(@product_order)
     - service.cancel_return_url finalize_product_order_url
-    - service.item_name "Fanfare"
-    input id="lc" name="lc" type="hidden" value=I18n.locale.to_s.upcase
-    input id="address1" name="address1" type="hidden" value=@product_order.shipping_address
-    input id="zip" name="zip" type="hidden" value=@product_order.shipping_zip
-    input id="city" name="city" type="hidden" value=@product_order.shipping_town
-    input id="country" name="country" type="hidden" value=I18n.t("countries.#{@product_order.shipping_country}")
-    input id="state" name="state" type="hidden" value=@product_order.shipping_province.camelize
-    input id="phone" name="night_phone_b" type="hidden" value=@product_order.shipping_phone
 
     = submit_tag "Pagar", :id => 'button_credit_card', :class => "strong-button"
