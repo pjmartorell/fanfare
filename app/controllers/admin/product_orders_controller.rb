@@ -20,7 +20,6 @@ class Admin::ProductOrdersController < Admin::AdminController
     redirect_to :back
   end
 
-
   private
 
   def initialize_countries

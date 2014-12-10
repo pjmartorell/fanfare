@@ -3,7 +3,7 @@ class PaymentsController < ActionController::Base
 
   def paypal_ipn
     notify = Paypal::Notification.new(request.raw_post)
-    order = Order.unpaid.find_by_ref(notify.item_id)
+    order = ProductOrder.pending.find_by_ref(notify.item_id)
 
     if notify.acknowledge
       begin
