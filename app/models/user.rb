@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
 
   has_many :product_orders
 
+  def to_s
+    username
+  end
+
   ROLES.each do |app_role|
     define_method("is_#{app_role}?") do
       role == app_role
