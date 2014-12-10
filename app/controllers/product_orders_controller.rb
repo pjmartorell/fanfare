@@ -13,7 +13,7 @@ class ProductOrdersController < ApplicationController
     @product_order.shipping_country = current_user.shipping_country
     @product_order.shipping_phone = current_user.shipping_phone
 
-    @products = Product.visible.all
+    @products = Product.visible
     @products.each do |product|
       @product_order.order_products.build(:product_id => product.id, :quantity => 0)
     end
