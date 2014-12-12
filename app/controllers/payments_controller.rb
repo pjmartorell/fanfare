@@ -1,5 +1,5 @@
 class PaymentsController < ActionController::Base
-  include ActiveMerchant::Billing::Integrations
+  include OffsitePayments::Integrations
 
   def paypal_ipn
     notify = Paypal::Notification.new(request.raw_post)
@@ -7,8 +7,8 @@ class PaymentsController < ActionController::Base
 
     if notify.acknowledge
       begin
-        if order.price.round(2) == notify.gross_cents / 100.0 && notify.complete?
-          order.paid!
+        if order.price == notify.gross and notify.complete?
+          order.set_paid!
           logger.info("Successfully paid through paypal. Original request: #{request.raw_post.inspect}")
         else
           logger.error("Failed to verify Paypal's notification, please investigate. Order id: #{order.id}")
