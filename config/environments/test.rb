@@ -35,7 +35,6 @@ Fanfare::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :test
-    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+    OffsitePayments.mode = :test
   end
 end

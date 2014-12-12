@@ -48,14 +48,6 @@ GEM
     active_utils (2.2.3)
       activesupport (>= 2.3.11)
       i18n
-    activemerchant (1.44.1)
-      active_utils (~> 2.2.0)
-      activesupport (>= 3.2.14, < 5.0.0)
-      builder (>= 2.1.2, < 4.0.0)
-      i18n (>= 0.6.9)
-      json (~> 1.7)
-      nokogiri (~> 1.4)
-      offsite_payments (~> 2.0.0)
     activemodel (4.0.0)
       activesupport (= 4.0.0)
       builder (~> 3.1.0)
@@ -495,7 +487,6 @@ DEPENDENCIES
   RedCloth
   aasm
   active_model_serializers
-  activemerchant (~> 1.44.1)
   activerecord-import
   airbrake
   apipie-rails!

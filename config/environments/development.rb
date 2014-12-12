@@ -28,6 +28,6 @@ Fanfare::Application.configure do
   config.assets.debug = true
 
   config.after_initialize do
-  ActiveMerchant::Billing::Base.mode = :test
+    OffsitePayments.mode = :test
   end
 end
