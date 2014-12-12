@@ -1,39 +1,52 @@
 class Order < ActiveRecord::Base
   include AASM
 
-  STATES = %w{ pending no-stock paid sent rejected}
+  STATES = %w{ pending paid given sent rejected}
 
   belongs_to :user
 
   before_validation :set_ref, :on => :create
   validates_inclusion_of :state, :in => STATES
-  after_create :update_user_data
+
+  scope :newest_first, -> { order('id DESC') }
+  scope :shipping_country, -> (shipping_country) { where shipping_country: shipping_country }
 
   aasm :column => :state do
     state :pending, :initial => true
-    state :undecided
+    state :paid, :enter => :notify_payment
     state :given, :enter => :give_prize
     state :sent, :enter => :notify_shipment
     state :rejected, :enter => :notify_rejection
 
-    event :set_undecided do
-      transitions :to => :undecided, :from => :pending
+    event :set_paid do
+      transitions :to => :paid, :from => :pending, :guards => :is_product_order?
     end
 
     event :set_given do
-      transitions :to => :given, :from => [:pending, :undecided]
+      transitions :to => :given, :from => :pending, :guards => :is_prize_order?
     end
 
     event :set_sent do
-      transitions :to => :sent, :from => :given
+      transitions :to => :sent, :from => [:paid, :given]
     end
 
     event :set_rejected do
-      transitions :to => :rejected, :from => [:undecided, :pending, :given, :sent]
+      transitions :to => :rejected, :from => [:pending, :paid, :sent, :given]
     end
   end
 
   private
+
+  def is_product_order?
+    instance_of?(ProductOrder)
+  end
+
+  def is_prize_order?
+    instance_of?(PrizeOrder)
+  end
+
+  def notify_payment
+  end
 
   def give_prize
   end

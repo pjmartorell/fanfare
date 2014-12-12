@@ -1,4 +1,5 @@
 class ProductOrder < Order
+
   SHIPPING_COUNTRIES = ['ES', 'PT', 'IT', 'DE']
 
   has_many :order_products, -> { order('created_at ASC') }, dependent: :destroy, :foreign_key => "order_id"
@@ -18,10 +19,7 @@ class ProductOrder < Order
     end
   end
 
-  scope :newest_first, -> { order('id DESC') }
   scope :product_order, -> (product_order_id) { where product_order_id: product_order_id }
-  scope :shipping_country, -> (shipping_country) { where shipping_country: shipping_country }
-  scope :state, -> (state) { where state: state }
 
   private
 
