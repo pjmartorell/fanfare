@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007223912) do
+ActiveRecord::Schema.define(version: 20141212192152) do
 
   create_table "bands", force: true do |t|
     t.string   "name"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20141007223912) do
     t.string   "product_show_image"
     t.string   "product_index_image"
     t.text     "description"
+    t.integer  "quantity",            default: 0
   end
 
   create_table "users", force: true do |t|
