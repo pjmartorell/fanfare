@@ -8,6 +8,7 @@ table.table.table-striped
       th Producte
       th Preu
       th Bonus
+      th Quantitat
       th Visible
       th
   tbody
@@ -16,6 +17,7 @@ table.table.table-striped
         td = product.name
         td = product.price
         td = product.bonus_points
+        td = product.quantity
         td.span2
           - message = product.visible ? "Ocultar" : "Mostrar"
           = link_to message, toggle_visible_admin_product_path(product), :class => "btn btn-mini", :method => :put
