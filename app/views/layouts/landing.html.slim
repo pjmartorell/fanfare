@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    / = render "shared/metas"
+
+    link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"
+
+    /[if lte IE 8]
+      link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css"
+
+    '<!--[if gt IE 8]><!--> <link href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css" rel="stylesheet">  <!--<![endif]-->
+
+    /! CSS
+    = stylesheet_link_tag  :application, :media => "all"
+    = stylesheet_link_tag "custom"
+
+    /! JS
+    = javascript_include_tag :application
+
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+  body.landing
+    /! Flash messages
+    / = render "shared/flash"
+
+    /! Show Referral user
+    / = render "shared/referral"
+
+    = yield
+
+    / = render "shared/footer"
+
+    / /! Cookies
+    / = render "shared/cookies"
+    #fb-root
+
+    = yield :custom_js
+
+    - if Rails.env.production?
+      = render "shared/google_analytics"
