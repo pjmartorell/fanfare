@@ -23,6 +23,31 @@ class ProductOrder < Order
 
   private
 
+  def update_stock
+    stock = true
+    transaction do
+      order_products.each do |order_product|
+        quantity = order_product.quantity
+        product = order_product.product
+        product.quantity -= quantity
+        if product.quantity < 0
+          stock = false
+          raise ActiveRecord::Rollback
+        else
+          product.save!
+        end
+      end
+    end
+    self.paid_at = Time.now
+    self.set_no_stock! unless stock
+  end
+
+  def notify_payment
+  end
+
+  def notify_no_stock
+  end
+
   def set_price
     self.price = calculate_price.round(2)
   end

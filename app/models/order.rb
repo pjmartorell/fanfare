@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   include AASM
 
-  STATES = %w{ pending paid given sent rejected}
+  STATES = %w{ pending paid given no_stock sent rejected}
 
   belongs_to :user
 
@@ -13,8 +13,9 @@ class Order < ActiveRecord::Base
 
   aasm :column => :state do
     state :pending, :initial => true
-    state :paid, :enter => :notify_payment
+    state :paid, :after_enter => [:update_stock, :notify_payment]
     state :given, :enter => :give_prize
+    state :no_stock, :enter => :notify_no_stock
     state :sent, :enter => :notify_shipment
     state :rejected, :enter => :notify_rejection
 
@@ -26,8 +27,12 @@ class Order < ActiveRecord::Base
       transitions :to => :given, :from => :pending, :guards => :is_prize_order?
     end
 
+    event :set_no_stock do
+      transitions :to => :no_stock, :from => :paid, :guards => :is_product_order?
+    end
+
     event :set_sent do
-      transitions :to => :sent, :from => [:paid, :given]
+      transitions :to => :sent, :from => [:paid, :given, :no_stock]
     end
 
     event :set_rejected do
@@ -43,12 +48,6 @@ class Order < ActiveRecord::Base
 
   def is_prize_order?
     instance_of?(PrizeOrder)
-  end
-
-  def notify_payment
-  end
-
-  def give_prize
   end
 
   def notify_shipment
