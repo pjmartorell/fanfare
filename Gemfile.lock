@@ -415,7 +415,6 @@ GEM
       websocket (~> 1.0.4)
     sendgrid (1.2.0)
       json
-      json
     sidekiq (3.2.1)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)

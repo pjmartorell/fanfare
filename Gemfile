@@ -130,7 +130,7 @@ group :development do
   gem 'better_errors'
   gem 'capistrano'
   gem 'capistrano-ext'
-  gem 'rvm-capistrano'
+  gem 'rvm-capistrano',  require: false
   gem 'capistrano_colors', :require => false
   gem 'mocha', require: false
   gem 'pry'
