@@ -14,6 +14,7 @@ namespace :heroku do
      "MAIL__ACCOUNT__USER_NAME" => APP_CONFIG["mail"]["account"]["user_name"],
      "NAME" => APP_CONFIG["name"],
      "BUNDLE_WITHOUT" => "development:test",
+     "STORAGE" => APP_CONFIG['storage'],
      "STORAGE__S3_ACCESS" => APP_CONFIG['storage']['s3_access'],
      "STORAGE__S3_SECRET" => APP_CONFIG['storage']['s3_secret'],
      "MAILCHIMP_KEY" => APP_CONFIG['mailchimp_key'],

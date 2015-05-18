@@ -8,6 +8,7 @@ if ENV['HEROKU'].present?
           :mail__smtp__address,
           :mail__smtp__port,
           :mail__domain,
+          :storage,
           :storage__s3_access,
           :storage__s3_secret,
           :mailchimp_key,
