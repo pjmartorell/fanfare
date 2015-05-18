@@ -115,7 +115,7 @@ gem 'activerecord-import'
 gem 'turbolinks'
 
 # DB
-gem 'mysql2'
+gem 'pg'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -130,7 +130,7 @@ group :development do
   gem 'better_errors'
   gem 'capistrano'
   gem 'capistrano-ext'
-  gem 'rvm-capistrano',  require: false
+  gem 'rvm-capistrano', :require => false
   gem 'capistrano_colors', :require => false
   gem 'mocha', require: false
   gem 'pry'
@@ -142,7 +142,6 @@ end
 
 # Test
 group :test do
-  gem 'sqlite3'
   gem 'factory_girl_rails'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
@@ -158,6 +157,7 @@ end
 group :development, :test do
   gem "rspec-rails", "~> 2.14.0"
   gem 'rails_layout'
+  gem 'sqlite3'
 end
 
 # Assets
