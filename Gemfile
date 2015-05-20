@@ -96,6 +96,7 @@ gem 'private_pub', git: 'git://github.com/ryanb/private_pub.git'
 
 # Exception manager
 gem 'airbrake'
+gem 'le'
 
 # Graphs
 

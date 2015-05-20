@@ -264,6 +264,7 @@ GEM
       multi_json
     launchy (2.4.2)
       addressable (~> 2.3)
+    le (2.6.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -527,6 +528,7 @@ DEPENDENCIES
   jquery-ui-rails
   koala
   launchy
+  le
   mini_magick
   mocha
   newrelic_rpm

@@ -12,7 +12,8 @@ if ENV['HEROKU'].present?
           :storage__s3_access,
           :storage__s3_secret,
           :mailchimp_key,
-          :paypal__account
+          :paypal__account,
+          :logentries
          ]
 
   APP_CONFIG = HashWithIndifferentAccess.new
