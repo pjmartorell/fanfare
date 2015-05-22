@@ -30,4 +30,6 @@ Fanfare::Application.configure do
   config.after_initialize do
     OffsitePayments.mode = :test
   end
+
+  Rails.logger = Le.new(APP_CONFIG['logentries'], :debug => true, :local => true)
 end
