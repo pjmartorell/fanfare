@@ -98,8 +98,6 @@ gem 'private_pub'
 gem 'airbrake'
 gem 'le'
 
-# Graphs
-
 # Caching
 gem 'dalli'
 
@@ -136,7 +134,6 @@ group :development do
   gem 'mocha', require: false
   gem 'byebug'
   gem 'binding_of_caller'
-  gem 'rails-erd'
 end
 
 # Test
