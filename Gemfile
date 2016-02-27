@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
+ruby "2.3.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'carmen-rails', '~> 1.0.0'
 
 # Frontend
-gem 'simple_form', github: "plataformatec/simple_form"
+gem 'simple_form'
 gem 'facebox-rails'
 
 # User management
@@ -59,7 +59,7 @@ gem 'offsite_payments'
 gem 'htmlentities'
 
 # Resource management
-gem 'best_in_place', github: 'bernat/best_in_place'
+gem 'best_in_place'
 
 # Task managing
 gem 'sidekiq'
@@ -92,7 +92,7 @@ gem 'draper'
 gem 'traco'
 
 # Communication via sockets
-gem 'private_pub', git: 'git://github.com/ryanb/private_pub.git'
+gem 'private_pub'
 
 # Exception manager
 gem 'airbrake'
@@ -122,7 +122,7 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
   # Documentation
-  gem 'apipie-rails', git: 'git://github.com/pjmartorell/apipie-rails.git'
+  gem 'apipie-rails'
 end
 
 # Development
@@ -134,9 +134,7 @@ group :development do
   gem 'rvm-capistrano', :require => false
   gem 'capistrano_colors', :require => false
   gem 'mocha', require: false
-  gem 'pry'
-  gem 'pry-stack_explorer'
-  gem 'pry-debugger'
+  gem 'byebug'
   gem 'binding_of_caller'
   gem 'rails-erd'
 end
