@@ -10,16 +10,14 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_self
  */
 
 @import "compass";
+@import "framework_and_overrides";
 @import "jquery.facebox";
 @import "datepicker";
-@import "framework_and_overrides";
 @import "scaffolds";
 @import "custom";
-
 //--------------
 // BASE
 //--------------
