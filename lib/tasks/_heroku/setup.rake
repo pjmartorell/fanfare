@@ -18,8 +18,7 @@ namespace :heroku do
      "STORAGE__S3_ACCESS" => APP_CONFIG['storage']['s3_access'],
      "STORAGE__S3_SECRET" => APP_CONFIG['storage']['s3_secret'],
      "MAILCHIMP_KEY" => APP_CONFIG['mailchimp_key'],
-     "PAYPAL__ACCOUNT" => APP_CONFIG['paypal']['account'],
-     "LOGENTRIES" => APP_CONFIG['logentries']
+     "PAYPAL__ACCOUNT" => APP_CONFIG['paypal']['account']
     }
 
     puts "We're about to set the following conf vars on Heroku for '#{current_branch}' application:"

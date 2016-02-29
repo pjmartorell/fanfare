@@ -96,7 +96,6 @@ gem 'private_pub'
 
 # Exception manager
 gem 'airbrake'
-gem 'le'
 
 # Caching
 gem 'dalli'
