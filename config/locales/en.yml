@@ -24,7 +24,8 @@ en:
     product_orders:
       index:
         pending: pendent
-        no-stock: no stock
+        no_stock: no stock
+        given: atorgat
         sent: enviat
         paid: pagat
         rejected: rebutjat

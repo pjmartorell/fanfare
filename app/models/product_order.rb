@@ -29,12 +29,14 @@ class ProductOrder < Order
       order_products.each do |order_product|
         quantity = order_product.quantity
         product = order_product.product
-        product.quantity -= quantity
-        if product.quantity < 0
-          stock = false
-          raise ActiveRecord::Rollback
-        else
-          product.save!
+        product.with_lock do
+          product.quantity -= quantity
+          if product.quantity < 0
+            stock = false
+            raise ActiveRecord::Rollback
+          else
+            product.save!
+          end
         end
       end
     end
